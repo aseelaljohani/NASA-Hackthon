@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NASA Bioscience Dashboard</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css"/>
+  <!-- D3.js for graph -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <!-- Chart.js for analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Header -->
+   <header class="header">
+  <div class="logo"></div>
+  <div class="titles">
+    <h1>NASA Bioscience Dashboard</h1>
+    <p>Explore space biology research with summaries and interactive visualizations</p>
+  </div>
+  <div class="header-actions">
+    <button id="exportBtn">Export</button>
+    <button id="shareBtn">Share</button>
+  </div>
+</header>
+
+
+  <!-- Search & Filters -->
+  <section class="search-filters">
+    <input type="text" id="searchBar" placeholder="Search by title, keywords, or topic"/>
+    <div class="filters">
+      <label class="filter-label" for="organismFilter">Organism Type</label>
+      <select id="organismFilter">
+        <option value="">All Organisms</option>
+        <option>Human</option>
+        <option>Plant</option>
+        <option>Microbe</option>
+        <option>Mouse</option>
+        <option>Drosophila</option>
+      </select>
+      <label class="filter-label" for="experimentFilter">Experiment Type</label>
+      <select id="experimentFilter">
+        <option value="">All Experiment Types</option>
+        <option>Microgravity</option>
+        <option>Radiation</option>
+        <option>Spaceflight</option>
+        <option>Ground-based Simulation</option>
+        <option>Genomics</option>
+        <option>Microbiome</option>
+      </select>
+      <div class="year-group">
+        <span class="filter-label">Publication Year (2000 - 2025)</span>
+      <input type="range" id="yearFilter" min="2000" max="2025" value="2015"/>
+      <span id="yearValue">2015</span>
+      </div>
+      <button id="clearFilters">Clear Filters</button>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" id="tabPublications">Publications <span class="badge" id="pubCount">0</span></button>
+      <button class="tab" id="tabGraph">Knowledge Graph</button>
+      <button class="tab" id="tabAnalytics">Analytics</button>
+    </nav>
+    <p class="results-count" id="resultsCount" aria-live="polite"></p>
+    <!-- Publications Section -->
+<section class="publications">
+  <h2>Publications</h2>
+  <div id="publicationsGrid" class="grid">
+    <!-- Cards generated dynamically -->
+  </div>
+  <div class="pagination">
+    <button id="prevPage">Prev</button>
+    <span id="pageInfo">Page 1 of 10</span>
+    <button id="nextPage">Next</button>
+  </div>
+</section>
+
+    
+
+    <!-- Knowledge Graph -->
+    <section class="knowledge-graph">
+      <h2>Knowledge Graph</h2>
+      <div class="graph-controls">
+        <button id="zoomIn">+</button>
+        <button id="zoomOut">-</button>
+        <button id="resetGraph">Reset</button>
+        <button id="fullscreenGraph">Fullscreen</button>
+      </div>
+      <div id="graphArea"></div>
+    </section>
+
+    <!-- Analytics -->
+    <section class="analytics">
+      <h2>Analytics</h2>
+      <div class="charts">
+        <canvas id="topProgressChart"></canvas>
+        <canvas id="knowledgeGapsChart"></canvas>
+        <canvas id="consensusChart"></canvas>
+        <canvas id="timelineChart"></canvas>
+        <!-- Hidden canvases to match existing script IDs without changing code -->
+        <canvas id="chart1" style="display:none"></canvas>
+        <canvas id="chart2" style="display:none"></canvas>
+        <canvas id="chart3" style="display:none"></canvas>
+      </div>
+      <!-- Added: Full Analytics Section (non-destructive) -->
+      <div class="analytics-full" id="analyticsFull" aria-live="polite">
+        <!-- Section Header -->
+        <div class="analytics-header">
+          <h3>Research Analytics</h3>
+          <p>Interactive insights into NASA bioscience research patterns</p>
+        </div>
+
+        <!-- Top Stats -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-value">25</div>
+            <div class="stat-label">Total Publications</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">84</div>
+            <div class="stat-label">Unique Research Entities</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">6</div>
+            <div class="stat-label">Publications per Year</div>
+          </div>
+        </div>
+
+        <!-- Middle Section: Charts -->
+        <div class="analytics-grid">
+          <div class="panel">
+            <div class="panel-header">Top Research Areas</div>
+            <div class="panel-body">
+              <canvas id="analyticsBarChart" height="220"></canvas>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">Research Distribution</div>
+            <div class="panel-body">
+              <canvas id="analyticsPieChart" height="220"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Section: Knowledge Gaps & Research Consensus -->
+        <div class="analytics-grid">
+          <div class="panel">
+            <div class="panel-header">Knowledge Gaps</div>
+            <div class="panel-body" id="knowledgeGapsTags">
+              <!-- tags injected by script -->
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">Research Consensus</div>
+            <div class="panel-body" id="consensusList">
+              <!-- consensus items injected by script -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 NASA Bioscience Dashboard</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>

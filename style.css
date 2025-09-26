@@ -1,0 +1,523 @@
+/* ===== General Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #0b0d17;
+  color: #f1f1f1;
+  line-height: 1.6;
+}
+
+/* ===== Header ===== */
+header.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(90deg, #1a1f36, #0b0d17);
+  border-bottom: 1px solid #2a2e45;
+}
+
+header .logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #4cc9f0, #4361ee);
+}
+
+header .titles {
+  text-align: center;
+}
+
+header .titles h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+header .titles p {
+  font-size: 0.9rem;
+  color: #a8a9b4;
+}
+
+header .header-actions button {
+  background: #4361ee;
+  border: none;
+  padding: 0.6rem 1rem;
+  margin-left: 0.5rem;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+header .header-actions button:hover {
+  background: #4cc9f0;
+}
+
+/* ===== Search & Filters ===== */
+.search-filters {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #2a2e45;
+}
+
+#searchBar {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  color: #a8a9b4;
+  font-size: 0.9rem;
+}
+
+.year-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filters select,
+.filters input[type="range"],
+.filters button {
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.9rem;
+}
+
+.filters select {
+  background: #1a1f36;
+  color: #fff;
+}
+
+.filters input[type="range"] {
+  flex: 1;
+}
+
+.filters button {
+  background: #ef233c;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filters button:hover {
+  background: #d90429;
+}
+
+#yearValue {
+  font-size: 0.9rem;
+  color: #f1f1f1;
+}
+
+/* ===== Publications Section ===== */
+.publications {
+  padding: 2rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  padding: 0 2rem 1rem 2rem;
+}
+
+.tab {
+  background: #1a1f36;
+  color: #cfd3ff;
+  border: 1px solid #2a2e45;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: #00d1ff;
+  color: #0b0d17;
+}
+
+.badge {
+  background: #0b0d17;
+  color: #00d1ff;
+  border: 1px solid #00d1ff;
+  padding: 1px 6px;
+  border-radius: 999px;
+  margin-left: 6px;
+  font-size: 12px;
+}
+
+.results-count {
+  padding: 0 2rem 0.5rem 2rem;
+  color: #a8a9b4;
+  font-size: 0.95rem;
+}
+
+.publications h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #4cc9f0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: #1a1f36;
+  border-radius: 10px;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.card .authors,
+.card .date {
+  font-size: 0.85rem;
+  color: #a8a9b4;
+}
+
+.card .summary {
+  margin: 0.8rem 0;
+  font-size: 0.9rem;
+  color: #d1d1d1;
+}
+
+.card .tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+
+.card .tags span {
+  background: #4361ee;
+  color: #fff;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.card button {
+  margin-top: 0.5rem;
+  background: #4cc9f0;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  color: #0b0d17;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.card button:hover {
+  background: #4361ee;
+  color: #fff;
+}
+
+.pagination {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.pagination button {
+  padding: 0.5rem 1rem;
+  background: #4361ee;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background: #4cc9f0;
+}
+
+/* ===== Knowledge Graph ===== */
+.knowledge-graph {
+  padding: 2rem;
+  border-top: 1px solid #2a2e45;
+}
+
+.knowledge-graph h2 {
+  margin-bottom: 1rem;
+  color: #4cc9f0;
+}
+
+.graph-controls {
+  margin-bottom: 1rem;
+}
+
+.graph-controls button {
+  background: #4361ee;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  margin-right: 0.5rem;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.graph-controls button:hover {
+  background: #4cc9f0;
+}
+
+#graphArea {
+  width: 100%;
+  height: 400px;
+  background: #0b0d17;
+  border: 1px solid #2a2e45;
+  border-radius: 8px;
+}
+
+/* ===== Analytics ===== */
+.analytics {
+  padding: 2rem;
+  border-top: 1px solid #2a2e45;
+}
+
+.analytics h2 {
+  margin-bottom: 1rem;
+  color: #4cc9f0;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Hide legacy charts block shown as empty panels */
+.analytics .charts {
+  display: none;
+}
+
+canvas {
+  background: #1a1f36;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* ===== Added: Analytics Full Section UI ===== */
+.analytics-full {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.analytics-header h3 {
+  font-family: "Space Grotesk", sans-serif;
+  color: #ffffff;
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.analytics-header p {
+  color: #a8a9b4;
+  font-size: 0.95rem;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: #13172a;
+  border: 1px solid #2a2e45;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  color: #00d1ff;
+  font-weight: 700;
+}
+
+.stat-label {
+  color: #cfd3ff;
+  font-size: 0.9rem;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.panel {
+  background: #1a1f36;
+  border: 1px solid #2a2e45;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 0.8rem 1rem;
+  color: #fff;
+  font-weight: 600;
+  background: linear-gradient(90deg, rgba(67,97,238,0.25), rgba(76,201,240,0.08));
+  border-bottom: 1px solid #2a2e45;
+}
+
+.panel-body {
+  padding: 1rem;
+}
+
+/* Keep analytics canvases compact and consistent */
+.panel-body canvas,
+#analyticsBarChart,
+#analyticsPieChart {
+  width: 100% !important;
+  height: 240px !important;
+  max-height: 240px;
+  border-radius: 8px;
+}
+
+/* Knowledge Gaps tags */
+#knowledgeGapsTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gap-tag {
+  background: linear-gradient(90deg, #fca311, #f77f00);
+  color: #0b0d17;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Consensus list */
+#consensusList {
+  display: grid;
+  gap: 10px;
+}
+
+.consensus-item {
+  display: grid;
+  gap: 6px;
+}
+
+.consensus-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #e9ecff;
+  font-weight: 600;
+}
+
+.consensus-desc {
+  color: #cfd3ff;
+  font-size: 0.9rem;
+}
+
+.consensus-bar {
+  height: 8px;
+  background: #0f1426;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #2a2e45;
+}
+
+.consensus-bar > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #2a9d8f, #52ffa8);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+  .panel-body canvas,
+  #analyticsBarChart,
+  #analyticsPieChart {
+    height: 200px !important;
+    max-height: 200px;
+  }
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #1a1f36;
+  border-top: 1px solid #2a2e45;
+  font-size: 0.85rem;
+  color: #a8a9b4;
+}
+#graphArea:fullscreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  background: #111; 
+}
+
+#graphArea:fullscreen svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background: #0ff;
+  color: #111;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  color: #fff;
+  font-size: 14px;
+}
