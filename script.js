@@ -4,8 +4,9 @@ const publications = [
     title: "Plant Growth in Microgravity",
     authors: "Smith et al.",
     date: "2022-05",
-    summary:
-      "This study examines how microgravity affects plant cell wall structure and growth dynamics. Results suggest altered growth patterns and stress response.",
+    summary: "This study examines how microgravity affects plant cell wall structure and growth dynamics...",
+    abstract: "Plants exposed to microgravity show altered cell wall composition and growth rates.",
+    conclusion: "Microgravity affects plant growth patterns, suggesting implications for long-term space agriculture.",
     keywords: ["Plant", "Microgravity", "Growth", "Stress Response"],
     link: "https://nasa.gov/example1",
   },
@@ -13,8 +14,9 @@ const publications = [
     title: "Radiation Impact on Human Cells",
     authors: "Johnson et al.",
     date: "2021-11",
-    summary:
-      "Human stem cells exposed to space radiation show DNA damage and repair variations. Findings highlight risks for long-term missions.",
+    summary: "Human stem cells exposed to space radiation show DNA damage and repair variations...",
+    abstract: "Cells experienced increased DNA strand breaks and mutations when exposed to radiation.",
+    conclusion: "Radiation poses significant risks to human cellular integrity on long-duration missions.",
     keywords: ["Human", "Radiation", "DNA", "Mutation"],
     link: "https://nasa.gov/example2",
   },
@@ -22,12 +24,14 @@ const publications = [
     title: "Microbial Adaptation in Spaceflight",
     authors: "Lee et al.",
     date: "2020-03",
-    summary:
-      "Microbes adapt to spaceflight conditions by altering gene expression. These changes affect resistance and virulence.",
+    summary: "Microbes adapt to spaceflight conditions by altering gene expression...",
+    abstract: "Microbial populations modify gene regulation to survive space conditions.",
+    conclusion: "Spaceflight triggers adaptive mechanisms, affecting microbial virulence and resistance.",
     keywords: ["Microbe", "Spaceflight", "Mutation", "Adaptation"],
     link: "https://nasa.gov/example3",
   },
 ];
+
 let currentPage = 1;
 const itemsPerPage = 3; 
 
@@ -39,7 +43,7 @@ function renderPublications(data) {
   const end = start + itemsPerPage;
   const pageItems = data.slice(start, end);
 
-  pageItems.forEach((pub) => {
+  pageItems.forEach((pub, index) => {
     const card = document.createElement("div");
     card.className = "card";
 
@@ -48,47 +52,44 @@ function renderPublications(data) {
       <p class="authors">${pub.authors}</p>
       <p class="date">${pub.date}</p>
       <p class="summary">${pub.summary}</p>
-      <div class="tags">${pub.keywords
-        .map((kw) => `<span>${kw}</span>`)
-        .join("")}</div>
+      <div class="tags">${pub.keywords.map(kw => `<span>${kw}</span>`).join('')}</div>
       <a href="${pub.link}" target="_blank">
         <button>Read Full Paper</button>
       </a>
+      <button class="expand-btn">Expand</button>
+      <div class="expanded-content" style="display:none; margin-top:10px;">
+        <p><strong>Abstract:</strong> ${pub.abstract || "No abstract available."}</p>
+        <p><strong>Conclusion:</strong> ${pub.conclusion || "No conclusion available."}</p>
+      </div>
     `;
+
+    // Expand / Collapse toggle
+    const expandBtn = card.querySelector(".expand-btn");
+    const expandedContent = card.querySelector(".expanded-content");
+    expandBtn.addEventListener("click", () => {
+      if (expandedContent.style.display === "none") {
+        expandedContent.style.display = "block";
+        expandBtn.textContent = "Collapse";
+      } else {
+        expandedContent.style.display = "none";
+        expandBtn.textContent = "Expand";
+      }
+    });
 
     container.appendChild(card);
   });
 
   document.getElementById("pageInfo").textContent =
     `Page ${currentPage} of ${Math.ceil(data.length / itemsPerPage)}`;
-
   document.getElementById("prevPage").disabled = currentPage === 1;
-  document.getElementById("nextPage").disabled =
-    end >= data.length;
+  document.getElementById("nextPage").disabled = end >= data.length;
 
-  // update UI counts if present
   const resultsCount = document.getElementById("resultsCount");
-  if (resultsCount) {
-    resultsCount.textContent = `Showing ${data.length} publications`;
-  }
+  if (resultsCount) resultsCount.textContent = `Showing ${data.length} publications`;
   const pubCount = document.getElementById("pubCount");
-  if (pubCount) {
-    pubCount.textContent = String(data.length);
-  }
+  if (pubCount) pubCount.textContent = String(data.length);
 }
-document.getElementById("prevPage").addEventListener("click", () => {
-  if (currentPage > 1) {
-    currentPage--;
-    renderPublications(publications);
-  }
-});
 
-document.getElementById("nextPage").addEventListener("click", () => {
-  if (currentPage < Math.ceil(publications.length / itemsPerPage)) {
-    currentPage++;
-    renderPublications(publications);
-  }
-});
 
 
 /* ===== Search & Filters ===== */
