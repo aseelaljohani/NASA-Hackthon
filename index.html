@@ -16,10 +16,17 @@
 <body>
   <!-- Header -->
    <header class="header">
-  <div class="logo"></div>
-  <div class="titles">
-    <h1>NASA Bioscience Dashboard</h1>
-    <p>Explore space biology research with summaries and interactive visualizations</p>
+  <div class="header-content">
+    <div class="logo">
+      <div class="rocket-icon">🚀</div>
+    </div>
+    <div class="titles">
+      <h1>NASA Bioscience Dashboard</h1>
+      <p>Explore space biology publications with AI summaries and interactive knowledge graphs.</p>
+    </div>
+  </div>
+  <div class="dna-background">
+    <div class="dna-helix"></div>
   </div>
 </header>
 
@@ -28,29 +35,38 @@
   <section class="search-filters">
     <input type="text" id="searchBar" placeholder="Search by title, keywords, or topic"/>
     <div class="filters">
-      <label class="filter-label" for="organismFilter">Organism Type</label>
-      <select id="organismFilter">
-        <option value="">All Organisms</option>
-        <option>Human</option>
-        <option>Plant</option>
-        <option>Microbe</option>
-        <option>Mouse</option>
-        <option>Drosophila</option>
-      </select>
-      <label class="filter-label" for="experimentFilter">Experiment Type</label>
-      <select id="experimentFilter">
-        <option value="">All Experiment Types</option>
-        <option>Microgravity</option>
-        <option>Radiation</option>
-        <option>Spaceflight</option>
-        <option>Ground-based Simulation</option>
-        <option>Genomics</option>
-        <option>Microbiome</option>
-      </select>
+      <div class="filter-group">
+        <label class="filter-label" for="organismFilter">Organism Type</label>
+        <select id="organismFilter">
+          <option value="">All</option>
+          <option>Human</option>
+          <option>Plant</option>
+          <option>Microbe</option>
+          <option>Mouse</option>
+          <option>Drosophila</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label" for="experimentFilter">Experiment Type</label>
+        <select id="experimentFilter">
+          <option value="">All</option>
+          <option>Microgravity</option>
+          <option>Radiation</option>
+          <option>Spaceflight</option>
+          <option>Ground-based Simulation</option>
+          <option>Genomics</option>
+          <option>Microbiome</option>
+        </select>
+      </div>
       <div class="year-group">
-        <span class="filter-label">Publication Year (2000 - 2025)</span>
-      <input type="range" id="yearFilter" min="2000" max="2025" value="2015"/>
-      <span id="yearValue">2015</span>
+        <span class="filter-label">Publication Year: <span id="yearStart">2020</span> - <span id="yearEnd">2024</span></span>
+        <div class="year-slider-container">
+          <input type="range" id="yearFilter" min="2020" max="2024" value="2022"/>
+          <div class="year-labels">
+            <span>2020</span>
+            <span>2024</span>
+          </div>
+        </div>
       </div>
       <button id="clearFilters">Clear Filters</button>
     </div>
